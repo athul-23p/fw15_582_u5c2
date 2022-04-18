@@ -46,12 +46,12 @@ export const AddStudent = () => {
 
     // validate 10 the score
     if (+formData.tenth_score > 100) {
-      errors.push("10th score should be not be greate than 100");
+      errors.push("10th score should be not be greater than 100");
     }
 
     // validate 12 the score
     if (+formData.twelth_score > 100) {
-      errors.push("12th score should be not be greate than 100");
+      errors.push("12th score should be not be greater than 100");
     }
 
     return errors;

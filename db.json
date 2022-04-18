@@ -120,6 +120,28 @@
       "twelth_score": "89",
       "preferred_branch": "science",
       "id": 11
+    },
+    {
+      "first_name": "Tina",
+      "last_name": "R",
+      "email": "tinaR@gmail.com",
+      "gender": "female",
+      "age": "17",
+      "tenth_score": "67",
+      "twelth_score": "87",
+      "preferred_branch": "science",
+      "id": 12
+    },
+    {
+      "first_name": "Keshav",
+      "last_name": "T P",
+      "email": "keshavvTp@tex.com",
+      "gender": "male",
+      "age": "18",
+      "tenth_score": "89",
+      "twelth_score": "100",
+      "preferred_branch": "commerce",
+      "id": 13
     }
   ]
 }
