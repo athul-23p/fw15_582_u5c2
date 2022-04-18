@@ -98,6 +98,28 @@
       "twelth_score": "72",
       "preferred_branch": "science",
       "id": 9
+    },
+    {
+      "first_name": "Kiran",
+      "last_name": "Prakash",
+      "email": "kiran98@gmail.com",
+      "gender": "male",
+      "age": "18",
+      "tenth_score": "45",
+      "twelth_score": "67",
+      "preferred_branch": "arts",
+      "id": 10
+    },
+    {
+      "first_name": "Thejus",
+      "last_name": "K K",
+      "email": "thejus721@gmail.com",
+      "gender": "male",
+      "age": "16",
+      "tenth_score": "67",
+      "twelth_score": "89",
+      "preferred_branch": "science",
+      "id": 11
     }
   ]
 }

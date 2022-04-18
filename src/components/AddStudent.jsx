@@ -1,52 +1,52 @@
-import './addstudent.css';
+import "./addstudent.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AddStudent = () => {
-
-  const [formData,setFormData] = useState({
-    first_name:"",
-    last_name:"",
-    email:"",
-    gender:"",
-    age:0,
-    tenth_score:0,
-    twelth_score:0,
-    preferred_branch:""
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    gender: "",
+    age: 0,
+    tenth_score: 0,
+    twelth_score: 0,
+    preferred_branch: "",
   });
 
-  
-
   const handleChange = (e) => {
-    const {name,value} = e.target;
-    setFormData({...formData,[name]:value});
-  }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const err = validate();
-    if(err.length > 0){
+    if (err.length > 0) {
       console.log(err);
-      alert(err.join('\n'));
+      alert(err.join("\n"));
       return;
     }
-    axios.post("http://localhost:8080/students",formData)
-    .then(response => {console.log(response)})
-    .catch(error => console.log(error));
-  }
+    axios
+      .post("http://localhost:8080/students", formData)
+      .then((response) => {
+        console.log(response);
+        alert('added student details');
+      })
+      .catch((error) => console.log(error));
+  };
 
   const validate = () => {
-    
     const errors = [];
-    
+
     //validate age
-    if(+formData.age > 50){
-      errors.push('Age should not be greater than 50')
+    if (+formData.age > 50) {
+      errors.push("Age should not be greater than 50");
     }
 
     // validate 10 the score
-    if(+formData.tenth_score > 100){
-      errors.push('10th score should be not be greate than 100')
+    if (+formData.tenth_score > 100) {
+      errors.push("10th score should be not be greate than 100");
     }
 
     // validate 12 the score
@@ -55,7 +55,7 @@ export const AddStudent = () => {
     }
 
     return errors;
-  }
+  };
   return (
     <form className="addstudent" onSubmit={handleSubmit}>
       <div>
@@ -160,7 +160,7 @@ export const AddStudent = () => {
 
       <input className="submit" type="submit" value="Submit" />
       {
-        // <div className="error"></div>
+        <div className="error"></div>
         // show this div with proper error before submitting form, if there's anything not provided
         // eg: first name missing, age cannot be greater than 100 etc
       }

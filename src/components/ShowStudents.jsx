@@ -1,43 +1,70 @@
-import './showstudents.css';
-import axios from 'axios';
-import { useState,useEffect } from 'react';
+import "./showstudents.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
 export const ShowStudents = () => {
-  const [students,setStudents] = useState([]);
-  const [sortControls,setSortControls] = useState({
-    sortby:"first_name",
-    sortorder:"asc"
+  const [students, setStudents] = useState([]);
+  const [sortControls, setSortControls] = useState({
+    sortby: "first_name",
+    sortorder: "asc",
   });
   useEffect(() => {
     getStudentData();
-  },[]);
+  }, []);
 
   const handleChange = (e) => {
-    const {name,value} = e.target;
-    setSortControls({...sortControls,[name]:value})
-  }
+    const { name, value } = e.target;
+    setSortControls({ ...sortControls, [name]: value });
+  };
 
-  const getStudentData = () =>{
-    axios.get("http://localhost:8080/students")
-    .then(response => {
-      console.log(response);
-      setStudents(response.data);
-    })
-    .catch(error => console.log(error));
-  }
+  const getStudentData = () => {
+    axios
+      .get("http://localhost:8080/students")
+      .then((response) => {
+        setStudents(sortData(response.data));
+      })
+      .catch((error) => console.log(error));
+  };
 
-  const sortData = () => {
-    console.log("sort", sortControls.sortby);
-    const tempData = [...students];
-    tempData.sort((a,b) => {
-      if(sortControls.sortorder === 'asc'){
-        return a[sortControls.sortby] - b[sortControls.sortby];
-      }
-      else{
-        return b[sortControls.sortby] - a[sortControls.sortby];
-      }
-    })
-    setStudents(tempData);
-  }
+  const sortData = (studentData) => {
+    const { sortby, sortorder } = sortControls;
+
+    const tempData = [...studentData];
+
+    if (sortby === "first_name" || sortby === "gender") {
+      tempData.sort((a, b) => {
+        if (sortControls.sortorder === "desc") {
+          if (a[sortby] < b[sortby]) {
+            return 1;
+          } else if (a[sortby] > b[sortby]) {
+            return -1;
+          } else {
+            return 0;
+          }
+        } else {
+          if (a[sortby] < b[sortby]) {
+            return -1;
+          } else if (a[sortby] > b[sortby]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+      });
+    } else {
+      tempData.sort((a, b) => {
+        if (sortorder === "asc") {
+          return a[sortby] - b[sortby];
+        } else {
+          return b[sortby] - a[sortby];
+        }
+      });
+    }
+    return tempData;
+  };
+
+  const handleUpdate = (data) => {
+    setStudents(data);
+  };
   return (
     <div>
       <div className="controls">
@@ -49,7 +76,9 @@ export const ShowStudents = () => {
             onChange={handleChange}
             name="sortby"
           >
-            <option value="first_name" selected>First Name</option>
+            <option value="first_name" selected>
+              First Name
+            </option>
             <option value="gender">Gender</option>
             <option value="age">Age</option>
             <option value="tenth_score">10th Score</option>
@@ -61,14 +90,23 @@ export const ShowStudents = () => {
           <select
             // select dropdown needs both value and onChange
             className="sortorder"
-            onChange = {handleChange}
+            onChange={handleChange}
             name="sortorder"
           >
-            <option value="asc" selected>Ascending</option>
+            <option value="asc" selected>
+              Ascending
+            </option>
             <option value="desc">Descending</option>
           </select>
         </div>
-        <button className="sort" onClick={sortData}>sort</button>
+        <button
+          className="sort"
+          onClick={() => {
+            handleUpdate(sortData(students));
+          }}
+        >
+          sort
+        </button>
       </div>
       <table className="table">
         <thead>
@@ -96,7 +134,7 @@ export const ShowStudents = () => {
             <td className="twelth_score"></td>
             <td className="preferred_branch"></td>
           </tr> */}
-          { students.map(s => {
+          {students.map((s) => {
             return (
               <tr className="row">
                 <td className="first_name">{s.first_name}</td>

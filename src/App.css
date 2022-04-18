@@ -1,4 +1,11 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  border: 3px solid red;
+  padding: 10px;
+  border-radius: 10px;
 }
 
+.togglebtn{
+  padding: 5px;
+  height:25px;
+}

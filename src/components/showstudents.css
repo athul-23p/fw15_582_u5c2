@@ -1,4 +1,21 @@
 .controls{
     display: flex;
     margin: 10px;
+    align-items: center;
+}
+.controls > div{
+    margin: 10px;
+}
+
+.sort{
+    height: 25px;
+    width: 60px;
+    padding: 2px;
+    margin: 10px;
+}
+
+.table,.tbody,.row, td, th{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    padding: 5px 10px;
 }
