@@ -87,6 +87,17 @@
       "tenth_score": 43,
       "twelth_score": 74,
       "preferred_branch": "commerce"
+    },
+    {
+      "first_name": "Anirudh",
+      "last_name": "KS",
+      "email": "aniruthit878@gmail.com",
+      "gender": "male",
+      "age": "16",
+      "tenth_score": "62",
+      "twelth_score": "72",
+      "preferred_branch": "science",
+      "id": 9
     }
   ]
 }
